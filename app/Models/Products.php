@@ -9,6 +9,14 @@ class Products extends Model
 {
     use HasFactory;
 
+    protected $table = "products";
+
+    protected $fillable =
+        [
+            'name', 'description', 'quantity'
+
+        ];
+
     public function supplier()
     {
         return $this->hasMany(Supplier::class);
@@ -17,5 +25,5 @@ class Products extends Model
     public function orderDetails()
     {
         return $this->hasOne(OrderDetails::class);
-            }
+    }
 }

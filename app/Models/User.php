@@ -10,6 +10,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public $guarded = ['id'];
+
+
     /**
      * The attributes that are mass assignable.
      *

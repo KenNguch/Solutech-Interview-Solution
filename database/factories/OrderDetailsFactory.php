@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\OrderDetails;
+use App\Models\OrderDetail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderDetailsFactory extends Factory
@@ -12,7 +12,7 @@ class OrderDetailsFactory extends Factory
      *
      * @var string
      */
-    protected $model = OrderDetails::class;
+    protected $model = OrderDetail::class;
 
     /**
      * Define the model's default state.

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SupplierProducts;
+use App\Models\SupplierProduct;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SupplierProductsFactory extends Factory
@@ -12,7 +12,7 @@ class SupplierProductsFactory extends Factory
      *
      * @var string
      */
-    protected $model = SupplierProducts::class;
+    protected $model = SupplierProduct::class;
 
     /**
      * Define the model's default state.

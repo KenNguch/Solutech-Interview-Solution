@@ -35,7 +35,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
 
-        $order->update($request->only('first_name', 'lastname', 'email'));
+        $order->update($request->only('order_number'));
 
         return response($order, Response::HTTP_ACCEPTED);
     }
@@ -44,6 +44,6 @@ class OrderController extends Controller
     {
         Order::destroy($id);
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->json(null, Response::HTTP_OK);
     }
 }

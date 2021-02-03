@@ -2,84 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SuppliersRequest;
 use App\Models\Supplier;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SupplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+
+        return response()->json(Supplier::paginate(), Response::HTTP_OK);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(SuppliersRequest $request)
     {
-        //
+        $supplier = Supplier::create([
+
+            $request->only('name','description','quantity')
+
+        ]);
+        return response($supplier, Response::HTTP_CREATED);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function show($id)
     {
-        //
+        return response()->json(Supplier::find($id));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Supplier $supplier)
+    public function update(SuppliersRequest $request, $id)
     {
-        //
+        $supplier = Supplier::find($id);
+
+        $supplier->update($request->only('name','description','quantity'));
+
+        return response($supplier, Response::HTTP_ACCEPTED);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Supplier $supplier)
+    public function destroy($id)
     {
-        //
-    }
+        Supplier::destroy($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Supplier $supplier)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Supplier $supplier)
-    {
-        //
+        return response()->json(null, Response::HTTP_OK);
     }
 }

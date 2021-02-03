@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SupplierProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +23,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/orders', OrderController::class);
+Route::apiResources([
+
+    '/orders' => OrderController::class,
+    '/order/details' => OrderDetailsController::class,
+    '/products'=> ProductsController::class,
+    '/suppliers' => SupplierController::class,
+    '/suppliers/products'=> SupplierProductsController::class
+
+]);

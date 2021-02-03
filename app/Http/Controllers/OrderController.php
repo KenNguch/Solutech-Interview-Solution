@@ -31,7 +31,7 @@ class OrderController extends Controller
         return response()->json(Order::find($id));
     }
 
-    public function update(OrdersRequest $request, $order)
+    public function update(OrdersRequest $request, $id)
     {
         $order = Order::find($id);
 

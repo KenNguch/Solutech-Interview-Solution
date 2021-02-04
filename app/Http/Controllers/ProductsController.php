@@ -11,14 +11,14 @@ class ProductsController extends Controller
     public function index()
     {
 
-        return response()->json(Product::paginate(), Response::HTTP_OK);
+        return Product::paginate();
     }
 
     public function store(ProductsRequest $request)
     {
         $product = Product::create([
 
-            $request->only('name','description','quantity')
+            $request->only('name', 'description', 'quantity')
 
         ]);
         return response($product, Response::HTTP_CREATED);
@@ -34,7 +34,7 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
 
-        $product->update($request->only('name','description','quantity'));
+        $product->update($request->only('name', 'description', 'quantity'));
 
         return response($product, Response::HTTP_ACCEPTED);
     }

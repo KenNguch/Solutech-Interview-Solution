@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrdersRequest;
 use App\Models\Order;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
@@ -19,9 +18,7 @@ class OrderController extends Controller
     public function store(OrdersRequest $request)
     {
         $order = Order::create([
-
             $request->only('order_number')
-
         ]);
         return response($order, Response::HTTP_CREATED);
     }
@@ -34,13 +31,12 @@ class OrderController extends Controller
     public function update(OrdersRequest $request, $id)
     {
         $order = Order::find($id);
-
         $order->update($request->only('order_number'));
 
         return response($order, Response::HTTP_ACCEPTED);
     }
 
-      public function destroy($id)
+    public function destroy($id)
     {
         Order::destroy($id);
 

@@ -10,16 +10,13 @@ class SupplierController extends Controller
 {
     public function index()
     {
-
         return response()->json(Supplier::paginate(), Response::HTTP_OK);
     }
 
     public function store(SuppliersRequest $request)
     {
         $supplier = Supplier::create([
-
-            $request->only('name','description','quantity')
-
+            $request->only('name', 'description', 'quantity')
         ]);
         return response($supplier, Response::HTTP_CREATED);
     }
@@ -33,8 +30,7 @@ class SupplierController extends Controller
     public function update(SuppliersRequest $request, $id)
     {
         $supplier = Supplier::find($id);
-
-        $supplier->update($request->only('name','description','quantity'));
+        $supplier->update($request->only('name', 'description', 'quantity'));
 
         return response($supplier, Response::HTTP_ACCEPTED);
     }
@@ -42,7 +38,6 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         Supplier::destroy($id);
-
         return response()->json(null, Response::HTTP_OK);
     }
 }

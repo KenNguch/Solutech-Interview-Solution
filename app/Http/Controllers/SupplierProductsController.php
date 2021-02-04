@@ -11,17 +11,18 @@ class SupplierProductsController extends Controller
     public function index()
     {
 
-        return response()->json(SupplierProduct::paginate(), Response::HTTP_OK);
+        return response()->json(SupplierProduct::paganiate(), Response::HTTP_OK);
     }
 
     public function store(SuppliersProductsRequest $request)
     {
         $supplierProduct = SupplierProduct::create([
 
-            $request->only('supply_id','product_id')
-
+            $request->only('supply_id', 'product_id')
         ]);
+
         return response($supplierProduct, Response::HTTP_CREATED);
+
     }
 
 
@@ -30,11 +31,10 @@ class SupplierProductsController extends Controller
         return response()->json(SupplierProduct::find($id));
     }
 
-    public function update(SuppliersProductsRequest  $request, $id)
+    public function update(SuppliersProductsRequest $request, $id)
     {
         $supplierProduct = SupplierProduct::find($id);
-
-        $supplierProduct->update($request->only('supply_id','product_id'));
+        $supplierProduct->update($request->only('supply_id', 'product_id'));
 
         return response($supplierProduct, Response::HTTP_ACCEPTED);
     }
@@ -42,7 +42,6 @@ class SupplierProductsController extends Controller
     public function destroy($id)
     {
         SupplierProduct::destroy($id);
-
         return response()->json(null, Response::HTTP_OK);
     }
 }

@@ -10,6 +10,7 @@ class SupplierProduct extends Model
     use HasFactory;
 
     public $fillable = [
+
         'supply_id',
         'product_id'
     ];
@@ -22,6 +23,6 @@ class SupplierProduct extends Model
 
     public function supplier()
     {
-        return $this->hasOne(Supplier::class);
+        return $this->hasMany(Supplier::class);
     }
 }

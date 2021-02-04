@@ -27,8 +27,7 @@ Route::apiResources([
 
     '/orders' => OrderController::class,
     '/order/details' => OrderDetailsController::class,
-    '/products'=> ProductsController::class,
+    '/products' => ProductsController::class,
     '/suppliers' => SupplierController::class,
-    '/suppliers/products'=> SupplierProductsController::class
-
+    '/suppliers/product' => SupplierProductsController::class
 ]);

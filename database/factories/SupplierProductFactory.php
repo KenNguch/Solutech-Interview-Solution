@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\OrderDetail;
+use App\Models\SupplierProduct;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class OrderDetailsFactory extends Factory
+class SupplierProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = OrderDetail::class;
+    protected $model = SupplierProduct::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,8 @@ class OrderDetailsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'supply_id' => $this->faker->numberBetween($min = 1, $max = 50),
+            'product_id' => $this->faker->numberBetween($min = 1, $max = 50),
         ];
     }
 }

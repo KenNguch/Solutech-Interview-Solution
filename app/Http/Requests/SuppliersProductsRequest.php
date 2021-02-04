@@ -24,8 +24,8 @@ class SuppliersProductsRequest extends FormRequest
     public function rules()
     {
         return [
-            'supply_id'=>'required|integer',
-            'product_id'=>'required|integer'
+            'supply_id' => 'required|integer',
+            'product_id' => 'required|integer'
         ];
     }
 }

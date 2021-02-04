@@ -7,14 +7,10 @@ use Illuminate\Database\Seeder;
 
 class OrderDetailsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        OrderDetail::factory()->times(50)->create();
+        OrderDetail::factory()->count(10)->create();
 
     }
 }

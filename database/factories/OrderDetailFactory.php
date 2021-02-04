@@ -22,8 +22,8 @@ class OrderDetailFactory extends Factory
     public function definition()
     {
         return [
-            'order_id' => $this->faker->numberBetween($min = 1, $max = 50),
-            'product_id' => $this->faker->numberBetween($min = 1, $max = 50)
+            'order_id' => $this->faker->numberBetween($min = 1, $max = 20),
+            'product_id' => $this->faker->numberBetween($min = 1, $max = 20)
         ];
     }
 }

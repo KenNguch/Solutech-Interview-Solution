@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\SupplierProduct;
 use Illuminate\Database\Seeder;
 
-class SupplierProductsSeeder extends Seeder
+class SupplierProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class SupplierProductsSeeder extends Seeder
      */
     public function run()
     {
-        SupplierProduct::factory()->times(50)->create();
+        SupplierProduct::factory()->count(10)->create();
     }
 }

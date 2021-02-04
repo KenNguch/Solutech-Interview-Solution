@@ -26,8 +26,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
 
     '/orders' => OrderController::class,
-    '/order/details' => OrderDetailsController::class,
+    '/orderdetails' => OrderDetailsController::class,
     '/products' => ProductsController::class,
     '/suppliers' => SupplierController::class,
-    '/suppliers/product' => SupplierProductsController::class
+    '/suppliersproduct' => SupplierProductsController::class
 ]);

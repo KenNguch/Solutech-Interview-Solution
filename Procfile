@@ -1,2 +1,3 @@
 web: vendor/bin/heroku-php-apache2 public/
 worker: php artisan migrate:refresh --seed
+worker: php artisan passport:install

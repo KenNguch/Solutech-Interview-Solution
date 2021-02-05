@@ -38,6 +38,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::post('login', [AuthController::class,'login']);
     Route::post('signup', [AuthController::class,'signup']);
+    Route::get('signup/activate/{token}', [AuthController::class,'signupActivate']);
 
     Route::group([
         'middleware' => 'auth:api'

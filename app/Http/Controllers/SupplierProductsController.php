@@ -10,8 +10,7 @@ class SupplierProductsController extends Controller
 {
     public function index()
     {
-
-        return response()->json(SupplierProduct::paganiate(), Response::HTTP_OK);
+        return response()->json(SupplierProduct::paginate(), Response::HTTP_OK);
     }
 
     public function store(SuppliersProductsRequest $request)

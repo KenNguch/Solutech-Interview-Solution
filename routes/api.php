@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\ProductsController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,16 @@ Route::apiResources([
     '/suppliers' => SupplierController::class,
     '/suppliersproduct' => SupplierProductsController::class
 ]);
+
+Route::group(['prefix' => 'auth'], function () {
+
+    Route::post('login', [AuthController::class,'login']);
+    Route::post('signup', [AuthController::class,'signup']);
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', [AuthController::class,'logout']);
+        Route::get('user', [AuthController::class,'user']);
+    });
+});

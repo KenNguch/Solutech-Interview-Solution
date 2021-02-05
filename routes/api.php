@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\ProductsController;
@@ -33,6 +34,17 @@ Route::apiResources([
     '/suppliers' => SupplierController::class,
     '/suppliersproduct' => SupplierProductsController::class
 ]);
+
+
+Route::group([
+    'namespace' => 'Auth',
+    'middleware' => 'api',
+    'prefix' => 'password'
+], function () {
+    Route::post('create', [PasswordResetController::class,'create']);
+    Route::get('find/{token}', [PasswordResetController::class,'find']);
+    Route::post('reset', [PasswordResetController::class,'reset']);
+});
 
 Route::group(['prefix' => 'auth'], function () {
 

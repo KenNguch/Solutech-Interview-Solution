@@ -4,15 +4,16 @@
 
 ##### Instructions:
 
-1. Write Laravel back end to implement CRUD REST APIs for the below ER diagram. 
+1. Write Laravel back end to implement CRUD REST APIs for the below ER diagram.
 1. Create a front end interface to consume the above APIs using VueJS.
-1. Ensure your APIs are authenticated. 
+1. Ensure your APIs are authenticated.
 1. Use database of your choice to persist data (preferably MySQL).
 1. Upload your code to a version control of your choice and share link to your repository.
 
 #### Note:
 
-Good code practice is what we a looking for and therefore you stand a chance for selection if you demonstrate skills in unit/feature testing, reusable design patterns and general mastery of development and deployment process.
+Good code practice is what we a looking for and therefore you stand a chance for selection if you demonstrate skills in
+unit/feature testing, reusable design patterns and general mastery of development and deployment process.
 
 ![](database_ERD.png)
 

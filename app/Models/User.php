@@ -10,12 +10,12 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory,HasApiTokens, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable;
 
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name', 'email', 'password', 'active', 'activation_token','avatar',
+        'name', 'email', 'password', 'active', 'activation_token', 'avatar',
     ];
 
     protected $hidden = [
@@ -32,6 +32,6 @@ class User extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
-        return Storage::url('avatars/'.$this->id.'/'.$this->avatar);
+        return Storage::url('avatars/' . $this->id . '/' . $this->avatar);
     }
 }

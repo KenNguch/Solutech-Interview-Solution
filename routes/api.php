@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SMS\BulkSmsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierProductsController;
 use Illuminate\Http\Request;
@@ -32,8 +33,11 @@ Route::apiResources([
     '/orderdetails' => OrderDetailsController::class,
     '/products' => ProductsController::class,
     '/suppliers' => SupplierController::class,
-    '/suppliersproduct' => SupplierProductsController::class
+    '/suppliersproduct' => SupplierProductsController::class,
+
+
 ]);
+Route::post('/sendSMS', [BulkSmsController::class, 'sendSms']);
 
 
 Route::group([
@@ -41,21 +45,21 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'password'
 ], function () {
-    Route::post('create', [PasswordResetController::class,'create']);
-    Route::get('find/{token}', [PasswordResetController::class,'find']);
-    Route::post('reset', [PasswordResetController::class,'reset']);
+    Route::post('create', [PasswordResetController::class, 'create']);
+    Route::get('find/{token}', [PasswordResetController::class, 'find']);
+    Route::post('reset', [PasswordResetController::class, 'reset']);
 });
 
 Route::group(['prefix' => 'auth'], function () {
 
-    Route::post('login', [AuthController::class,'login']);
-    Route::post('signup', [AuthController::class,'signup']);
-    Route::get('signup/activate/{token}', [AuthController::class,'signupActivate']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('signup', [AuthController::class, 'signup']);
+    Route::get('signup/activate/{token}', [AuthController::class, 'signupActivate']);
 
     Route::group([
         'middleware' => 'auth:api'
-    ], function() {
-        Route::get('logout', [AuthController::class,'logout']);
-        Route::get('user', [AuthController::class,'user']);
+    ], function () {
+        Route::get('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'user']);
     });
 });

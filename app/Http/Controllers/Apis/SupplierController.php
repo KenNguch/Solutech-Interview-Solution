@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Apis;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SuppliersRequest;
 use App\Models\Supplier;
 use Symfony\Component\HttpFoundation\Response;

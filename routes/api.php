@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailsController;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\Apis\OrderController;
+use App\Http\Controllers\Apis\OrderDetailsController;
+use App\Http\Controllers\Apis\ProductsController;
 use App\Http\Controllers\SMS\BulkSmsController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\SupplierProductsController;
+use App\Http\Controllers\Apis\SupplierController;
+use App\Http\Controllers\Apis\SupplierProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

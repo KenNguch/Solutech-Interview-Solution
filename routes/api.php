@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\Api\DocumentController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Apis\OrderController;
 use App\Http\Controllers\Apis\OrderDetailsController;
 use App\Http\Controllers\Apis\ProductsController;
-use App\Http\Controllers\SMS\BulkSmsController;
 use App\Http\Controllers\Apis\SupplierController;
 use App\Http\Controllers\Apis\SupplierProductsController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\SMS\BulkSmsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,24 +23,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Routes with Authentication
 
+Route::post('login', [AuthController::class, 'login']);
+Route::post('signup', [AuthController::class, 'signup']);
+Route::get('signup/activate/{token}', [AuthController::class, 'signupActivate']);
 
 Route::group([
-    'namespace' => 'Auth',
-    'middleware' => 'api',
     'prefix' => 'password'
 ], function () {
     Route::post('create', [PasswordResetController::class, 'create']);
     Route::get('find/{token}', [PasswordResetController::class, 'find']);
     Route::post('passwordReset', [PasswordResetController::class, 'reset']);
 });
-
-
- //Routes with Authentication
-
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('signup', [AuthController::class, 'signup']);
-    Route::get('signup/activate/{token}', [AuthController::class, 'signupActivate']);
 
 Route::group(['prefix' => 'auth'], function () {
     Route::group([
@@ -55,10 +49,10 @@ Route::group(['prefix' => 'auth'], function () {
         Route::apiResources([
 
             '/orders' => OrderController::class,
-            '/orderdetails' => OrderDetailsController::class,
+            '/orderDetails' => OrderDetailsController::class,
             '/products' => ProductsController::class,
             '/suppliers' => SupplierController::class,
-            '/suppliersproduct' => SupplierProductsController::class,
+            '/suppliersProduct' => SupplierProductsController::class,
 
 
         ]);

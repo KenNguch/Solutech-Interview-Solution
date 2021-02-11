@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DocumentController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Apis\OrderController;
@@ -23,21 +24,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::apiResources([
-
-    '/orders' => OrderController::class,
-    '/orderdetails' => OrderDetailsController::class,
-    '/products' => ProductsController::class,
-    '/suppliers' => SupplierController::class,
-    '/suppliersproduct' => SupplierProductsController::class,
-
-
-]);
-Route::post('/sendSMS', [BulkSmsController::class, 'sendSms']);
 
 
 Route::group([
@@ -47,19 +33,39 @@ Route::group([
 ], function () {
     Route::post('create', [PasswordResetController::class, 'create']);
     Route::get('find/{token}', [PasswordResetController::class, 'find']);
-    Route::post('reset', [PasswordResetController::class, 'reset']);
+    Route::post('passwordReset', [PasswordResetController::class, 'reset']);
 });
 
-Route::group(['prefix' => 'auth'], function () {
+
+ //Routes with Authentication
 
     Route::post('login', [AuthController::class, 'login']);
     Route::post('signup', [AuthController::class, 'signup']);
     Route::get('signup/activate/{token}', [AuthController::class, 'signupActivate']);
 
+Route::group(['prefix' => 'auth'], function () {
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'user']);
+
+        //Routes with Authentication
+
+        Route::apiResources([
+
+            '/orders' => OrderController::class,
+            '/orderdetails' => OrderDetailsController::class,
+            '/products' => ProductsController::class,
+            '/suppliers' => SupplierController::class,
+            '/suppliersproduct' => SupplierProductsController::class,
+
+
+        ]);
     });
 });
+
+//Testing
+Route::post('/sendSMS', [BulkSmsController::class, 'sendSms']);
+Route::post('/storeFile', [DocumentController::class, 'store']);
+

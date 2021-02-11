@@ -1,27 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class DocumentController extends Controller
 {
-
+    /**
+     * ...
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * ...
+     */
     public function store(Request $request)
 
     {
         $validator = Validator::make($request->all(),
         [
-            'user_id' => 'required|number',
+            'user_id' => 'required',
             'file'=> 'required|mimes:doc,docx,pdf|max:5120'
         ]);
 
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->erors()],Response::HTTP_UNAUTHORIZED);
+            return response()->json(['error'=>$validator->errors()],Response::HTTP_UNAUTHORIZED);
         }
         else if ($file = $request->file('file')){
             //storing into the document folder

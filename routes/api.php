@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\DocumentController;
+
+use App\Http\Controllers\Apis\DocumentController;
 use App\Http\Controllers\Apis\OrderController;
 use App\Http\Controllers\Apis\OrderDetailsController;
 use App\Http\Controllers\Apis\ProductsController;

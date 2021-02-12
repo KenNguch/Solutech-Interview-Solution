@@ -24,36 +24,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Routes with Authentication
+//Routes without Authentication
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('signup', [AuthController::class, 'signup']);
 Route::get('signup/activate/{token}', [AuthController::class, 'signupActivate']);
 
-Route::group([
-    'prefix' => 'password'
-], function () {
+Route::group(['prefix' => 'password'], function () {
     Route::post('create', [PasswordResetController::class, 'create']);
     Route::get('find/{token}', [PasswordResetController::class, 'find']);
     Route::post('passwordReset', [PasswordResetController::class, 'reset']);
 });
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::group([
-        'middleware' => 'auth:api'
-    ], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'user']);
 
-        //Routes with Authentication
+        //Routes that require authorization
 
         Route::apiResources([
 
-            '/orders' => OrderController::class,
-            '/orderDetails' => OrderDetailsController::class,
-            '/products' => ProductsController::class,
-            '/suppliers' => SupplierController::class,
-            '/suppliersProduct' => SupplierProductsController::class,
+            'orders' => OrderController::class,
+            'orderDetails' => OrderDetailsController::class,
+            'products' => ProductsController::class,
+            'suppliers' => SupplierController::class,
+            'suppliersProduct' => SupplierProductsController::class,
 
 
         ]);
@@ -61,6 +58,6 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 //Testing
-Route::post('/sendSMS', [BulkSmsController::class, 'sendSms']);
-Route::post('/storeFile', [DocumentController::class, 'store']);
+Route::post('sendSMS', [BulkSmsController::class, 'sendSms']);
+Route::post('storeFile', [DocumentController::class, 'store']);
 

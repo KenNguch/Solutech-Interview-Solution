@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "ext-gd": "*",
+        "darkaonline/l5-swagger": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -19,8 +20,7 @@
         "laravel/tinker": "^2.5",
         "laravolt/avatar": "^4.0",
         "nesbot/carbon": "^2.44",
-        "twilio/sdk": "^6.16",
-        "ext-http": "*"
+        "twilio/sdk": "^6.16"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

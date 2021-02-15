@@ -64,3 +64,13 @@ Route::group(['prefix' => 'auth'], function () {
 Route::post('/sendSMS', [BulkSmsController::class, 'sendSms']);
 Route::post('/storeFile', [DocumentController::class, 'store']);
 
+Route::apiResources([
+
+    '/orders' => OrderController::class,
+    '/orderDetails' => OrderDetailsController::class,
+    '/products' => ProductsController::class,
+    '/suppliers' => SupplierController::class,
+    '/suppliersProduct' => SupplierProductsController::class,
+
+
+]);

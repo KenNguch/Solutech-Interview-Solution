@@ -12,7 +12,6 @@ namespace App\Virtual\Resources;
  *     )
  * )
  */
-
 class OrderResource
 {
     /**

@@ -11,7 +11,6 @@ namespace App\Virtual\Requests\Orders;
  *      required={"order_number"}
  * )
  */
-
 class UpdateOrderRequest
 {
     /**

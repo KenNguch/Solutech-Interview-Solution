@@ -42,8 +42,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
-        Route::get('logout', [AuthController::class, 'logout']);
-        Route::get('user', [AuthController::class, 'user']);
 
         //Routes with Authentication
 
@@ -57,6 +55,10 @@ Route::group(['prefix' => 'auth'], function () {
 
 
         ]);
+
+        Route::get('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'user']);
+
     });
 });
 
@@ -64,13 +66,4 @@ Route::group(['prefix' => 'auth'], function () {
 Route::post('/sendSMS', [BulkSmsController::class, 'sendSms']);
 Route::post('/storeFile', [DocumentController::class, 'store']);
 
-Route::apiResources([
 
-    '/orders' => OrderController::class,
-    '/orderDetails' => OrderDetailsController::class,
-    '/products' => ProductsController::class,
-    '/suppliers' => SupplierController::class,
-    '/suppliersProduct' => SupplierProductsController::class,
-
-
-]);

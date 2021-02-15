@@ -11,11 +11,15 @@ class OrderController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/orders",
+     *      path="/auth/orders",
      *      operationId="getOrdersList",
      *      tags={"Orders"},
      *      summary="Get list of orders",
      *      description="Returns list of orders",
+     *security={
+     *{
+     *"passport": {}},
+     *},
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -38,11 +42,15 @@ class OrderController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/orders",
+     *      path="/auth/orders",
      *      operationId="storeOrder",
      *      tags={"Orders"},
      *      summary="create a new order",
      *      description="Returns order data",
+     *security={
+     *{
+     *"passport": {}},
+     *},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/StoreOrderRequest")
@@ -72,16 +80,20 @@ class OrderController extends Controller
             'order_number' => $request->order_number
         ]);
 
-        return response($order, Response::HTTP_CREATED);
+        return response()->json($order, Response::HTTP_CREATED);
     }
 
     /**
      * @OA\Get(
-     *      path="/orders/{id}",
+     *      path="/auth/orders/{id}",
      *      operationId="getOrderById",
      *      tags={"Orders"},
      *      summary="Get order information",
      *      description="Returns order data",
+     *security={
+     *{
+     *"passport": {}},
+     *},
      *      @OA\Parameter(
      *          name="id",
      *          description="Orders id",
@@ -117,11 +129,15 @@ class OrderController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/orders/{id}",
+     *      path="/auth/orders/{id}",
      *      operationId="updateOrder",
      *      tags={"Orders"},
      *      summary="Update existing order",
      *      description="Returns updated order data",
+     *security={
+     *{
+     *"passport": {}},
+     *},
      *      @OA\Parameter(
      *          name="id",
      *          description="Order id",
@@ -168,11 +184,15 @@ class OrderController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/orders/{id}",
+     *      path="/auth/orders/{id}",
      *      operationId="deleteOrder",
      *      tags={"Orders"},
      *      summary="Delete existing order",
      *      description="Deletes a record and returns no content",
+     *security={
+     *{
+     *"passport": {}},
+     *},
      *      @OA\Parameter(
      *          name="id",
      *          description="Order id",

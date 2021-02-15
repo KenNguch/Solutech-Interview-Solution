@@ -29,7 +29,6 @@ class Controller extends BaseController
      *      url=L5_SWAGGER_CONST_HOST,
      *      description="V1 API Server"
      * )
-
      *
      * @OA\Tag(
      *     name="Orders",

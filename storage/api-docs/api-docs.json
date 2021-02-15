@@ -119,6 +119,59 @@
                         "description": "Forbidden"
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Update existing order",
+                "description": "Returns updated order data",
+                "operationId": "updateOrder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateOrderRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Order"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
             }
         }
     },
@@ -200,6 +253,23 @@
                         "type": "integer",
                         "format": "int64",
                         "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateOrderRequest": {
+                "title": "Update Order request",
+                "description": "Update Order request body data",
+                "required": [
+                    "order_number"
+                ],
+                "properties": {
+                    "order_number": {
+                        "title": "order_number",
+                        "description": "Order number for the new order",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 15
                     }
                 },
                 "type": "object"

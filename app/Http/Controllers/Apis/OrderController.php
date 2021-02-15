@@ -69,8 +69,9 @@ class OrderController extends Controller
     public function store(OrdersRequest $request)
     {
         $order = Order::create([
-            $request->only('order_number')
+            'order_number' => $request->order_number
         ]);
+
         return response($order, Response::HTTP_CREATED);
     }
 
@@ -164,6 +165,7 @@ class OrderController extends Controller
 
         return response($order, Response::HTTP_ACCEPTED);
     }
+
     /**
      * @OA\Delete(
      *      path="/orders/{id}",

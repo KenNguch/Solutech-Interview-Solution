@@ -42,7 +42,7 @@ class BulkSmsController extends Controller
             }
 
 
-            return response()->json('the following message '.$message.' was sent to '.$number, Response::HTTP_CREATED);
+            return response()->json('the following message ' . $message . ' was sent to ' . $number, Response::HTTP_CREATED);
 
         } else {
             return back()->withErrors($validator);

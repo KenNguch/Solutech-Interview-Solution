@@ -222,24 +222,6 @@
                     "name": "Order"
                 }
             },
-            "OrderResource": {
-                "title": "OrderResource",
-                "description": "Order resource",
-                "properties": {
-                    "data": {
-                        "title": "Data",
-                        "description": "Data wrapper",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Order"
-                        }
-                    }
-                },
-                "type": "object",
-                "xml": {
-                    "name": "OrderResource"
-                }
-            },
             "StoreOrderRequest": {
                 "title": "Store Order request",
                 "description": "Store Order request body data",
@@ -273,6 +255,24 @@
                     }
                 },
                 "type": "object"
+            },
+            "OrderResource": {
+                "title": "OrderResource",
+                "description": "Order resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Order"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "OrderResource"
+                }
             }
         }
     },

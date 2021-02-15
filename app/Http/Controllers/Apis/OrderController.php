@@ -164,11 +164,45 @@ class OrderController extends Controller
 
         return response($order, Response::HTTP_ACCEPTED);
     }
-
+    /**
+     * @OA\Delete(
+     *      path="/orders/{id}",
+     *      operationId="deleteOrder",
+     *      tags={"Orders"},
+     *      summary="Delete existing order",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Order id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
     public function destroy($id)
     {
         Order::destroy($id);
 
-        return response()->json(null, Response::HTTP_OK);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

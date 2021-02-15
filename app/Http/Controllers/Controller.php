@@ -14,10 +14,10 @@ class Controller extends BaseController
     /**
      * @OA\Info(
      *      version="1.0.0",
-     *      title="Laravel OpenApi Demo Documentation",
+     *      title="Manaal Ventures Api Documentation",
      *      description="L5 Swagger OpenApi description",
      *      @OA\Contact(
-     *          email="admin@admin.com"
+     *          email="kennguch3@gmail.com"
      *      ),
      *      @OA\License(
      *          name="Apache 2.0",
@@ -27,13 +27,13 @@ class Controller extends BaseController
      *
      * @OA\Server(
      *      url=L5_SWAGGER_CONST_HOST,
-     *      description="Demo API Server"
+     *      description="V1 API Server"
      * )
 
      *
      * @OA\Tag(
-     *     name="Projects",
-     *     description="API Endpoints of Projects"
+     *     name="Orders",
+     *     description="API Endpoints of Orders"
      * )
      */
 }

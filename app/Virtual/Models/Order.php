@@ -27,10 +27,10 @@ class Order
     private $id;
     /**
      * @OA\Property(
-     *     title="order_number",
-     *     description="$order_number",
+     *     title="Order Number",
+     *     description="Order Number",
      *     format="int64",
-     *     example=1
+     *     example=15
      * )
      *
      * @var integer

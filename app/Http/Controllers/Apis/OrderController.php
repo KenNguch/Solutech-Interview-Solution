@@ -19,7 +19,6 @@ class OrderController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/OrderResource")
      *       ),
      *      @OA\Response(
      *          response=401,
@@ -31,13 +30,42 @@ class OrderController extends Controller
      *      )
      *     )
      */
-
     public function index()
     {
 
         return response()->json(Order::paginate(), Response::HTTP_OK);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/orders",
+     *      operationId="storeOrder",
+     *      tags={"Orders"},
+     *      summary="create a new order",
+     *      description="Returns order data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/StoreOrderRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Order")
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function store(OrdersRequest $request)
     {
         $order = Order::create([

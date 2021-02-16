@@ -18,7 +18,7 @@ class UserLoginRequest
      *     title = "email",
      *     type = "string",
      *     format = "email",
-     *     example = "user1@mail.com"
+     *     example = "username3@gmail.com"
      *)
      *
      * @var String

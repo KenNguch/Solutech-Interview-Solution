@@ -9,6 +9,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Laravolt\Avatar\Avatar;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -56,18 +59,17 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'activation_token' => str_random(60)
-
+            'activation_token' => Str::uuid()->toString()
         ]);
         $user->save();
-        $avatar = (new \Laravolt\Avatar\Avatar)->create($user->name)->getImageObject()->encode('png');
+        $avatar = (new Avatar)->create($user->name)->getImageObject()->encode('png');
         Storage::put('avatars/' . $user->id . '/avatar.png', (string)$avatar);
 
         $user->notify(new SignupActivate($user));
 
 
         return response()->json([
-            'message' => 'User Successfully created kindly check your email(' . $user->email . ') for activation'
+            'message' => 'Dear ' . $user->name . ' you have successfully created an account. kindly check your email(' . $user->email . ') for activation'
         ], Response::HTTP_CREATED);
     }
 
@@ -83,10 +85,10 @@ class AuthController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/UserLoginRequest")
      *      ),
      *      @OA\Response(
-     *          response=201,
-     *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *          response=200,
+     *          description="Successful Operation(OK)",
      *       ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -115,7 +117,7 @@ class AuthController extends Controller
         if (!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
-            ], 401);
+            ], Response::HTTP_UNAUTHORIZED);
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
@@ -151,22 +153,21 @@ class AuthController extends Controller
      * @OA\Get(
      * path="/signup/activate/{activation_token}",
      * summary="Activate new User",
-     * description="           Returns user data",
+     * description="Returns user data",
      * operationId="authSignupActivateUser",
      * tags={"Auth"},
      * @OA\Parameter(
-     *          name="activation_token",
-     *          description="activation_token from your email",
+     *          name="token",
+     *          description="token from your email",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              type="String"
+     *              type="string"
      *          )
      *      ),
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/User")
      *       ),
      *      @OA\Response(
      *          response=400,
@@ -179,16 +180,21 @@ class AuthController extends Controller
      *      @OA\Response(
      *          response=403,
      *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
      *      )
      * )
      */
+
     public function signupActivate($token)
     {
         $user = User::where('activation_token', $token)->first();
         if (!$user) {
             return response()->json([
                 'message' => 'This activation token is invalid.'
-            ], 404);
+            ], Response::HTTP_NOT_FOUND);
         }
         $user->active = true;
         $user->activation_token = '';

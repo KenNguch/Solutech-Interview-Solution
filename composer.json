@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.5",
         "laravolt/avatar": "^4.0",
         "nesbot/carbon": "^2.44",
-        "twilio/sdk": "^6.16"
+        "twilio/sdk": "^6.16",
+        "webpatser/laravel-uuid": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

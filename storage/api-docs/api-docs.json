@@ -297,15 +297,8 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
+                    "200": {
+                        "description": "Successful Operation(OK)"
                     },
                     "400": {
                         "description": "Bad Request"
@@ -325,29 +318,22 @@
                     "Auth"
                 ],
                 "summary": "Activate new User",
-                "description": "           Returns user data",
+                "description": "Returns user data",
                 "operationId": "authSignupActivateUser",
                 "parameters": [
                     {
-                        "name": "activation_token",
+                        "name": "token",
                         "in": "path",
-                        "description": "activation_token from your email",
+                        "description": "token from your email",
                         "required": true,
                         "schema": {
-                            "type": "String"
+                            "type": "string"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User"
-                                }
-                            }
-                        }
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Bad Request"
@@ -357,6 +343,9 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 }
             }

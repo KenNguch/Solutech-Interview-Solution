@@ -236,6 +236,88 @@
                     }
                 ]
             }
+        },
+        "/signup": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Sign Up",
+                "description": "enter name,email, password and password_confirm to sign up to this system",
+                "operationId": "authSignup",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserSignUpRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Sign in",
+                "description": "SignIn by email and password",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserLoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -284,6 +366,129 @@
                 "xml": {
                     "name": "Order"
                 }
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "password": {
+                        "title": "password",
+                        "description": "password for your account",
+                        "type": "string",
+                        "format": "password",
+                        "example": "PassWord12345"
+                    },
+                    "remember_me": {
+                        "title": "remember_me",
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "email": {
+                        "description": "Enter Your Email Address",
+                        "type": "string",
+                        "format": "email",
+                        "example": "user1@mail.com"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "UserLoginRequest": {
+                "title": "User Login request",
+                "description": "User Login request body data",
+                "required": [
+                    "email,passowrd"
+                ],
+                "properties": {
+                    "email": {
+                        "title": "email",
+                        "description": "Users Email",
+                        "type": "string",
+                        "format": "email",
+                        "example": "user1@mail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password for your account",
+                        "type": "string",
+                        "format": "password",
+                        "example": "PassWord12345"
+                    },
+                    "password_confirmation": {
+                        "title": "password_confirmation",
+                        "description": "confirm password for your account",
+                        "type": "string",
+                        "format": "password",
+                        "example": "PassWord12345"
+                    },
+                    "remember_me": {
+                        "title": "remember_me",
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "UserSignUpRequest": {
+                "title": "User Login request",
+                "description": "User Login request body data",
+                "required": [
+                    "email,passowrd"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Users Name",
+                        "type": "string",
+                        "format": "name",
+                        "example": "Kavon Berge I"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Users Email",
+                        "type": "string",
+                        "format": "email",
+                        "example": "youremail@domain.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password for your account",
+                        "type": "string",
+                        "format": "password",
+                        "example": "PassWord12345"
+                    },
+                    "password_confirmation": {
+                        "title": "password_confirmation",
+                        "description": "confirm password for your account",
+                        "type": "string",
+                        "format": "password",
+                        "example": "PassWord12345"
+                    }
+                },
+                "type": "object"
             },
             "StoreOrderRequest": {
                 "title": "Store Order request",
@@ -336,6 +541,24 @@
                 "xml": {
                     "name": "OrderResource"
                 }
+            },
+            "UserResource": {
+                "title": "UserResource",
+                "description": "User resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "UserResource"
+                }
             }
         },
         "securitySchemes": {
@@ -359,6 +582,10 @@
         {
             "name": "Orders",
             "description": "API Endpoints of Orders"
+        },
+        {
+            "name": "auth",
+            "description": "API Endpoints of Authentication"
         }
     ],
     "security": [

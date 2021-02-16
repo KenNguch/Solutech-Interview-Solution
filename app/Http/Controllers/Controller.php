@@ -34,5 +34,10 @@ class Controller extends BaseController
      *     name="Orders",
      *     description="API Endpoints of Orders"
      * )
+     *
+     * @OA\Tag(
+     *     name="auth",
+     *     description="API Endpoints of Authentication"
+     * )
      */
 }

@@ -9,19 +9,42 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class AuthController extends Controller
 {
     /**
-     * Create user
-     *
-     * @param  [string] name
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [string] password_confirmation
-     * @return [string] message
+     * @OA\Post(
+     * path="/signup",
+     * summary="Sign Up",
+     * description="enter name,email, password and password_confirm to sign up to this system",
+     * operationId="authSignup",
+     * tags={"auth"},
+     * @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserSignUpRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
+
     public function signup(Request $request)
     {
         $request->validate([
@@ -44,20 +67,39 @@ class AuthController extends Controller
 
 
         return response()->json([
-            'message' => 'Successfully created user!'
-        ], 201);
+            'message' => 'User Successfully created kindly check your email(' . $user->email . ') for activation'
+        ], Response::HTTP_CREATED);
     }
 
     /**
-     *
-     * Login user and create token
-     *
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [boolean] remember_me
-     * @return [string] access_token
-     * @return [string] token_type
-     * @return [string] expires_at
+     * @OA\Post(
+     * path="/login",
+     * summary="Sign in",
+     * description="SignIn by email and password",
+     * operationId="authLogin",
+     * tags={"auth"},
+     * @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserLoginRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
     public function login(Request $request)
     {

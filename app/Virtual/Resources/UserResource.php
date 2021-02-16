@@ -3,25 +3,27 @@
 
 namespace App\Virtual\Resources;
 
-use App\Virtual\Models\Order;
+
+use App\Virtual\Models\User;
 
 /**
  * @OA\Schema(
- *     title="OrderResource",
- *     description="Order resource",
+ *     title="UserResource",
+ *     description="User resource",
  *     @OA\Xml(
- *         name="OrderResource"
+ *         name="UserResource"
  *     )
  * )
  */
-class OrderResource
+
+class UserResource
 {
     /**
      * @OA\Property(
      *     title="Data",
      *     description="Data wrapper"
      * )
-     * @var Order[]
+     * @var User[]
      */
     private $data;
 

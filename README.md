@@ -25,3 +25,5 @@ Phone: +254737501944
 
 1. Confirm account, Reset Password + Notifications(Emails).
 1. Generating User avatar.
+1. Api documentation using Swagger(https://github.com/DarkaOnLine/L5-Swagger).
+

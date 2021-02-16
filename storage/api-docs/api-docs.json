@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000/api/",
+            "url": "",
             "description": "V1 API Server"
         }
     ],
@@ -474,7 +474,7 @@
                         "description": "Users Email",
                         "type": "string",
                         "format": "email",
-                        "example": "user1@mail.com"
+                        "example": "username3@gmail.com"
                     },
                     "password": {
                         "title": "password",

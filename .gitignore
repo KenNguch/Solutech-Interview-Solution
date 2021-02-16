@@ -12,5 +12,4 @@ npm-debug.log
 yarn-error.log
 .idea
 /resources/views/vendor
-/storage/api-docs
-/public/swagger-ui-assets
+

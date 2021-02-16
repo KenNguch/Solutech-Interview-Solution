@@ -36,7 +36,7 @@ class Controller extends BaseController
      * )
      *
      * @OA\Tag(
-     *     name="auth",
+     *     name="Auth",
      *     description="API Endpoints of Authentication"
      * )
      */

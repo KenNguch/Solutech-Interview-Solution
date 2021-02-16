@@ -48,7 +48,7 @@
                 "tags": [
                     "Orders"
                 ],
-                "summary": "create a new order",
+                "summary": "Create a new order",
                 "description": "Returns order data",
                 "operationId": "storeOrder",
                 "requestBody": {
@@ -240,7 +240,7 @@
         "/signup": {
             "post": {
                 "tags": [
-                    "auth"
+                    "Auth"
                 ],
                 "summary": "Sign Up",
                 "description": "enter name,email, password and password_confirm to sign up to this system",
@@ -281,7 +281,7 @@
         "/login": {
             "post": {
                 "tags": [
-                    "auth"
+                    "Auth"
                 ],
                 "summary": "Sign in",
                 "description": "SignIn by email and password",
@@ -296,6 +296,48 @@
                         }
                     }
                 },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/signup/activate/{activation_token}": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Activate new User",
+                "description": "           Returns user data",
+                "operationId": "authSignupActivateUser",
+                "parameters": [
+                    {
+                        "name": "activation_token",
+                        "in": "path",
+                        "description": "activation_token from your email",
+                        "required": true,
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Successful operation",
@@ -371,23 +413,31 @@
                 "title": "User",
                 "description": "User model",
                 "properties": {
-                    "password": {
-                        "title": "password",
-                        "description": "password for your account",
+                    "name": {
+                        "title": "email",
+                        "description": "Your Name",
                         "type": "string",
-                        "format": "password",
-                        "example": "PassWord12345"
-                    },
-                    "remember_me": {
-                        "title": "remember_me",
-                        "type": "boolean",
-                        "example": "true"
+                        "format": "name",
+                        "example": " Ben Obama"
                     },
                     "email": {
+                        "title": "email",
                         "description": "Enter Your Email Address",
                         "type": "string",
                         "format": "email",
                         "example": "user1@mail.com"
+                    },
+                    "avatar": {
+                        "title": "avatar",
+                        "description": "avatar",
+                        "type": "string",
+                        "format": "/location",
+                        "example": "avatar.png"
+                    },
+                    "active": {
+                        "title": "active",
+                        "type": "boolean",
+                        "example": "true"
                     },
                     "created_at": {
                         "title": "Created at",
@@ -409,6 +459,13 @@
                         "type": "string",
                         "format": "datetime",
                         "example": "2020-01-27 17:50:45"
+                    },
+                    "avatar_url": {
+                        "title": "avatar_url",
+                        "description": "avatar location",
+                        "type": "string",
+                        "format": "/storage/avatars/user_id/avatar.png",
+                        "example": "/storage/avatars/4/avatar.png"
                     }
                 },
                 "type": "object",
@@ -453,10 +510,10 @@
                 "type": "object"
             },
             "UserSignUpRequest": {
-                "title": "User Login request",
-                "description": "User Login request body data",
+                "title": "User Sign Up request",
+                "description": "User Sign Up request body data",
                 "required": [
-                    "email,passowrd"
+                    "email,passowrd,password_confirmation"
                 ],
                 "properties": {
                     "name": {
@@ -486,6 +543,23 @@
                         "type": "string",
                         "format": "password",
                         "example": "PassWord12345"
+                    }
+                },
+                "type": "object"
+            },
+            "UserSignupActivateRequest": {
+                "title": "New User Activatation request",
+                "description": "User Signup Activate Request body data",
+                "required": [
+                    "activation_token"
+                ],
+                "properties": {
+                    "activation_token": {
+                        "title": "activation_token",
+                        "description": "Enter your activation token from the email you received",
+                        "type": "string",
+                        "format": "token",
+                        "example": "u1t1upplsNNtqVpDO0ANeWqPhTAmeHddAKaBTBJZM3pYJnLo6FiFYXnHCYMv"
                     }
                 },
                 "type": "object"
@@ -584,7 +658,7 @@
             "description": "API Endpoints of Orders"
         },
         {
-            "name": "auth",
+            "name": "Auth",
             "description": "API Endpoints of Authentication"
         }
     ],

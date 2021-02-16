@@ -18,6 +18,18 @@ class User
     /**
      * @OA\Property(
      *     title="email",
+     *     description="Your Name",
+     *     format="name",
+     *     example=" Ben Obama"
+     * )
+     *
+     * @var String
+     */
+
+    public $name;
+    /**
+     * @OA\Property(
+     *     title="email",
      *     description="Enter Your Email Address",
      *     format="email",
      *     example="user1@mail.com"
@@ -25,19 +37,31 @@ class User
      *
      * @var String
      */
-    private $email;
+
+    public $email;
+    /**
+     * @OA\Property(
+     *     title="avatar",
+     *     description="avatar",
+     *     format="/location",
+     *     example="avatar.png"
+     * )
+     *
+     * @var String
+     */
+
+    public $avatar;
 
     /**
      * @OA\Property(
-     *     title="Password",
-     *     type="string",
-     *     description="Password for your account",
-     *     format="password",
-     *     example="PassWord12345"
+     *     title="active",
+     *     type="boolean",
+     *     example="true"
      * )
-     * @var  String
+     *
+     * @var boolean
      */
-    public $password;
+    public $active;
 
     /**
      * @OA\Property(
@@ -77,5 +101,18 @@ class User
      * @var \DateTime
      */
     private $deleted_at;
+
+    /**
+     * @OA\Property(
+     *     title="avatar_url",
+     *     description="avatar location",
+     *     format="/storage/avatars/user_id/avatar.png",
+     *     example="/storage/avatars/4/avatar.png"
+     * )
+     *
+     * @var String
+     */
+
+    public $avatar_url;
 
 }

@@ -20,7 +20,7 @@ class AuthController extends Controller
      * summary="Sign Up",
      * description="enter name,email, password and password_confirm to sign up to this system",
      * operationId="authSignup",
-     * tags={"auth"},
+     * tags={"Auth"},
      * @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/UserSignUpRequest")
@@ -77,7 +77,7 @@ class AuthController extends Controller
      * summary="Sign in",
      * description="SignIn by email and password",
      * operationId="authLogin",
-     * tags={"auth"},
+     * tags={"Auth"},
      * @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/UserLoginRequest")
@@ -131,11 +131,7 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Logout user (Revoke the token)
-     *
-     * @return [string] message
-     */
+
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
@@ -144,16 +140,48 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Get the authenticated User
-     *
-     * @return [json] user object
-     */
+
     public function user(Request $request)
     {
         return response()->json($request->user());
     }
 
+
+    /**
+     * @OA\Get(
+     * path="/signup/activate/{activation_token}",
+     * summary="Activate new User",
+     * description="           Returns user data",
+     * operationId="authSignupActivateUser",
+     * tags={"Auth"},
+     * @OA\Parameter(
+     *          name="activation_token",
+     *          description="activation_token from your email",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="String"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function signupActivate($token)
     {
         $user = User::where('activation_token', $token)->first();

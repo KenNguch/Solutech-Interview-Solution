@@ -45,7 +45,7 @@ class OrderController extends Controller
      *      path="/auth/orders",
      *      operationId="storeOrder",
      *      tags={"Orders"},
-     *      summary="create a new order",
+     *      summary="Create a new order",
      *      description="Returns order data",
      *security={
      *{

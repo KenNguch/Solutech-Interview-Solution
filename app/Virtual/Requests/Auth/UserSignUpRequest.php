@@ -5,13 +5,12 @@ namespace App\Virtual\Requests\Auth;
 
 /**
  * @OA\Schema(
- *      title="User Login request",
- *      description="User Login request body data",
+ *      title="User Sign Up request",
+ *      description="User Sign Up request body data",
  *      type="object",
- *      required={"email,passowrd"}
+ *      required={"email,passowrd,password_confirmation"}
  * )
  */
-
 class UserSignUpRequest
 {
     /**
@@ -61,6 +60,6 @@ class UserSignUpRequest
      * )
      * @var  String
      */
-    public $password_confirmation ;
+    public $password_confirmation;
 
 }

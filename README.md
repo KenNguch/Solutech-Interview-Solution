@@ -27,3 +27,5 @@ Phone: +254737501944
 1. Generating User avatar.
 1. Api documentation using Swagger(https://github.com/DarkaOnLine/L5-Swagger).
 
+
+check the live session of the api routes(https://ordermanagementsystem-api.herokuapp.com/)
